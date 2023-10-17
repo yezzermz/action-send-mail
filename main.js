@@ -23,12 +23,12 @@ function getText(textOrFile, convertMarkdown) {
     return text
 }
 
-function getFromEmail(from_email, username) {
-    if (from_email.match(/.+ <.+@.+>/)) {
-        return from_email
-    }
+function getFrom(from, username) {
+    //if (from.match(/.+ <.+@.+>/)) {
+    //    return from
+    //}
 
-    return `"${from_email}" <${username}>`
+    return `"${from}" <${username}>`
 }
 
 async function getAttachments(attachments) {
@@ -79,7 +79,7 @@ async function main() {
         }
 
         const subject = core.getInput("subject", { required: true })
-        const from = core.getInput("from_email", { required: true })
+        const from = core.getInput("from", { required: true })
         const to = core.getInput("to", { required: false })
         const body = core.getInput("body", { required: false })
         const htmlBody = core.getInput("html_body", { required: false })
@@ -115,7 +115,7 @@ async function main() {
         })
 
         const info = await transport.sendMail({
-            from: getFromEmail(from_email, username),
+            from: getFromEmail(from, username),
             to: to,
             subject: getText(subject, false),
             cc: cc ? cc : undefined,
