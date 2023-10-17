@@ -115,7 +115,7 @@ async function main() {
         })
 
         const info = await transport.sendMail({
-            from: getFrom(from, username),
+            from_email: getFrom(from, username),
             to: to,
             subject: getText(subject, false),
             cc: cc ? cc : undefined,
