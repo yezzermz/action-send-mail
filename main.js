@@ -24,9 +24,9 @@ function getText(textOrFile, convertMarkdown) {
 }
 
 function getFrom(from, username) {
-    //if (from.match(/.+ <.+@.+>/)) {
-    //    return from
-    //}
+    if (from.match(/.+ <.+@.+>/)) {
+        return from
+    }
 
     return `"${from}" <${username}>`
 }
